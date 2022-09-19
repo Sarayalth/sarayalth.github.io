@@ -1,0 +1,68 @@
+h1 {
+    color: #6600cc; /*#FC768A #8477FD blue #6600cc*/
+}
+
+body,
+html {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+::selection {
+    background: #E17844;
+}
+
+a:link {
+    color: #168E79;
+}
+
+a:active {
+    text-shadow: 0px 0px 10px #6f38c7;
+    transition: text-shadow 0.5s;
+}
+
+a:visited {
+    color: #277757;
+}
+
+.stuff {
+    position: absolute;
+}
+
+#popitmenu {
+    position: absolute;
+    color: #ac8d8d;
+    background-color: #fdeaf1;
+    border: 1px solid #ac8d8d;
+    font-family: "Century Gothic";
+    font-size: 10px;
+    line-height: 14x;
+    z-index: 100;
+    visibility: hidden;
+    letter-spacing: 2px;
+}
+
+#popitmenu a {
+    color: #ac8d8d;
+    text-decoration: none;
+    padding-left: 6px;
+    color: black;
+    display: block;
+}
+
+#popitmenu a:hover {
+    /*hover background color*/
+    background-color: #ffccff;
+}
