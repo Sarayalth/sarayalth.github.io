@@ -176,7 +176,7 @@ function set_width() {
 }
 
 function createspdiv(height, width) {
-  var spdiv=document.createElement("spdiv");
+  var spdiv=document.createElement("div");
   spdiv.style.position="absolute";
   spdiv.style.height=height+"px";
   spdiv.style.width=width+"px";
