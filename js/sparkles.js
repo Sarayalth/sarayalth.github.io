@@ -44,7 +44,7 @@ window.onload=function() { if (document.getElementById) {
     sprdow.style.left="2px";
     document.body.appendChild(star[i]=rats);
   }
-  set_width();
+  spset_width();
   sparkle();
 }}
 
@@ -151,8 +151,8 @@ function set_scroll() {
   }
 }
 
-window.onresize=set_width;
-function set_width() {
+window.onresize=spset_width;
+function spset_width() {
   var sw_min=999999;
   var sh_min=999999;
   if (document.documentElement && document.documentElement.clientWidth) {
