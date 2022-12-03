@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sarahbot</title>
+        <style>
+            /* Style the chat interface */
+            body {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                height: 100vh;
+                font-family: sans-serif;
+                background-color: #333;
+                color: #eee;
+            }
+
+            /* Style the chat messages */
+            #chatMessages {
+                overflow-y: auto;
+                padding: 10px;
+                /* Add padding between groups of messages */
+                flex-direction: column-reverse;
+                border-radius: 10px;
+                font-family: "Courier New", Courier, monospace;
+            }
+
+            /* Style the chatbox */
+            #chatbox {
+                margin: 0 auto;
+                padding: 10px;
+                display: flex;
+                background-color: #444;
+                align-items: center;
+                border-radius: 10px;
+                font-family: "Courier New", Courier, monospace;
+            }
+
+            /* Style the input field and button */
+            #chatbox input {
+                border-bottom: 1px solid #aaa !important;
+                width: 300px;
+            }
+
+            /* Style the input field and button */
+            #chatbox input,
+            #chatbox button {
+                font-size: 16px;
+                padding: 8px;
+                border: none;
+                background-color: transparent;
+                outline: none;
+                color: #eee;
+                font-family: "Courier New", Courier, monospace;
+            }
+
+            /* Style the send button */
+            #chatbox button {
+                color: #fff;
+                background-color: transparent;
+                cursor: pointer;
+                border-radius: 10px;
+                font-family: "Courier New", Courier, monospace;
+            }
+
+            /* Style the user's message */
+            .user-message {
+                margin: 0 auto;
+                width: 500px;
+                padding: 10px;
+                background-color: #757575;
+                border-radius: 10px;
+                color: #fff;
+                font-family: "Courier New", Courier, monospace;
+            }
+
+            /* Style the chatbot's response */
+            .chatbot-response {
+                margin: 0 auto;
+                width: 500px;
+                padding: 10px;
+                background-color: #4A4A4A;
+                border-radius: 10px;
+                color: #fff;
+                font-family: "Courier New", Courier, monospace;
+            }
+
+            #chatMessages::-webkit-scrollbar {
+                background-color: #757575;
+                width: 10px;
+            }
+
+            #chatMessages {
+                -ms-overflow-style: scrollbar;
+            }
+
+            #chatMessages::-webkit-scrollbar-thumb {
+                background-color: #4a4a4a;
+            }
+
+            #chatMessages::-moz-range-thumb {
+                background-color: #4a4a4a;
+            }
+
+            #chatMessages::-ms-thumb {
+                background-color: #4a4a4a;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="chatMessages"></div>
+        <div id="chatbox">
+            <input type="text" id="userInput" placeholder="Enter a message" onkeydown="submitOnEnter(event)" required />
+            <button onclick="chat()" id="sendButton">Send</button>
+        </div>
+        <script>
+            // Wrap the code in an IIFE to execute it when the page loads
+            let inputField = document.getElementById("userInput");
+            let sendButton = document.getElementById("sendButton");
+
+            // Add an event listener to the input field that listens for changes
+            inputField.addEventListener("change", function () {
+                // If the input field is not empty, enable the button
+                if (inputField.value) {
+                    sendButton.disabled = false;
+                } else {
+                    // If the input field is empty, disable the button
+                    sendButton.disabled = true;
+                }
+            });
+
+            function submitOnEnter(event) {
+                if (event.keyCode === 13) {
+                    // Submit the input field's value
+                    chat();
+                }
+            }
+
+            function chat() {
+                // Get the user's input
+                let userInput = document.getElementById("userInput").value;
+
+                // If the input field is empty, return without sending a message
+                if (!userInput) {
+                    return;
+                }
+
+                // Generate a random number between 0 and 1
+                let randomNumber = Math.random();
+
+                // Use the random number to determine which response to use
+                let response;
+                if (randomNumber < 0.25) {
+                    // Respond with "idk"
+                    response = "idk";
+                } else if (randomNumber < 0.5) {
+                    // Respond with "skill issue"
+                    response = "skill issue";
+                } else if (randomNumber < 0.75) {
+                    // Respond with "sounds like a you problem"
+                    response = "sounds like a you problem";
+                } else if (randomNumber < 0.9) {
+                    // Respond with ":polkasit:"
+                    response = ":polkasit:";
+                } else {
+                    // Respond with ":kanadead:"
+                    response = ":kanadead:";
+                }
+
+                let messageGroup = document.createElement("p");
+                messageGroup.classList.add("message-group");
+
+                // Create a new <p> element to contain the chatbot's response
+                let chatbotMessage = document.createElement("p");
+                chatbotMessage.classList.add("chatbot-response");
+                chatbotMessage.innerHTML = "Sarah: " + response;
+
+                // Create a new <p> element to contain the user's message
+                let userMessage = document.createElement("p");
+                userMessage.classList.add("user-message");
+                userMessage.innerHTML = "You: " + userInput;
+
+                // Add the user's message and the chatbot's response to the page
+                document.getElementById("chatMessages").appendChild(messageGroup);
+                messageGroup.appendChild(userMessage);
+                messageGroup.appendChild(chatbotMessage);
+
+                // Scroll to the bottom of the chat messages
+                document.getElementById("chatMessages").scrollTop = document.getElementById("chatMessages").scrollHeight;
+
+                // Clear the input field
+                document.getElementById("userInput").value = "";
+
+                // Enable the button again
+                document.getElementById("sendButton").disabled = false;
+            }
+        </script>
+    </body>
+</html>
